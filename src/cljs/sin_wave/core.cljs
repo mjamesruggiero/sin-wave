@@ -27,12 +27,9 @@
 (defn sine-coord "sine coordinates" [x]
   (let [sin (Math/sin (deg-to-rad x))
         y (- 100 (* sin 90))]
-    (.log js/console "sin is " sin)
     {:x x
      :y y
      :sin sin}))
-
-(.log js/console (str (sine-coord 50)))
 
 (def sine-wave
   (.map canvas-time sine-coord))
@@ -42,6 +39,6 @@
   (.fillRect ctx x y 2 2))
 
 (-> sine-wave
-    (.take 600)
+    (.take 700)
     (.subscribe (fn [{:keys [x y]}]
                   (fill-rect x y "orange"))))
